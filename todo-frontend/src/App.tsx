@@ -1,31 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import internal from 'stream';
-import { NumericLiteral } from 'typescript';
+import React from "react";
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
-  
-interface weather {
-  date: string;
-  temperatureC: number;
-  temperatueF: NumericLiteral;
-  summary: string;
-}
+import * as AuthService from "./services/auth-service";
+
+import NavBar from "./components/navbar";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Home from "./pages/home";
+import loginModel from "./models/loginModel";
 
 function App() {
-  const [weathers, setWeather] = useState<weather[]>([]);
-  const [error, setError] = useState({});
+  const [currentUser, setCurrentUser] = useState<loginModel | undefined>(undefined);
 
   useEffect(() => {
-    fetch('/WeatherForecast')
-    .then(response => response.json())
-    .then(res => setWeather(res))
-    .catch(err => setError(err))
+    const user: loginModel | undefined = AuthService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+
   }, []);
+
+  const logOut = () => {
+    AuthService.logout();
+    setCurrentUser(undefined);  
+  };
   return (
-    <div className='App'>
-      Hej
-      {weathers.length > 0 ? weathers.map(weather => (weather.summary)) : ("Loading...")}
+    <div>
+      <NavBar logOut={logOut}></NavBar>      
+      <div className="container mt-3">
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/home" element={<Home/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
     </div>
   )
 }

@@ -33,7 +33,7 @@ namespace todo_backend.Controllers
         public async Task<IEnumerable<ToDoModel>> Get()
         {
             ApplicationUser user = await GetCurrentUserAsync();
-            return this.dbContext.ToDoItems.Where(e => e.ApplicationUser.Id == user.Id).ToList().ConvertAll<ToDoModel>(item => new ToDoModel(item));
+            return this.dbContext.ToDoItems.Where(e => e.ApplicationUser.Id == user.Id).OrderByDescending(e => e.CreateDate).ToList().ConvertAll<ToDoModel>(item => new ToDoModel(item));
         }
 
         [HttpPost(Name = "AddToDo")]

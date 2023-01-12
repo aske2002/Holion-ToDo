@@ -63,8 +63,9 @@ namespace todo_backend.Controllers
 
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    accessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                    tokenExpiration = token.ValidTo,
+                    username = user.UserName
                 });
             }
             return Unauthorized();
@@ -88,7 +89,7 @@ namespace todo_backend.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok();
         }
     }
 }
