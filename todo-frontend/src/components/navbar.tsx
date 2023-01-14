@@ -13,7 +13,7 @@ const NavBar: React.FC<NavBarProps> = ({logOut}: NavBarProps) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand d-flex align-items-center">
+                <a className="navbar-brand d-flex align-items-center" >
                     <h1>Todo</h1>
                     <small className="mx-3">hello {AuthService.getCurrentUser()?.username}</small>
                 </a>
