@@ -17,7 +17,7 @@ export const requestAddToDo = (model: addToDoModel): Promise<AxiosResponse<toDoM
 };
 
 export const requestEditToDo = (model: editToDoModel): Promise<AxiosResponse<toDoModel, any>> => {
-    return request<toDoModel>({model: model}, crudEnum.PUT, baseUrl)
+    return request<toDoModel>(model, crudEnum.PUT, baseUrl)
 };
 
 export const requestGetToDo = (): Promise<AxiosResponse<toDoModel[], any>> => {

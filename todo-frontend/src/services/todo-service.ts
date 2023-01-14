@@ -11,7 +11,7 @@ export const getToDos = (): Promise<AxiosResponse<toDoModel[], any>> => {
     return ApiService.requestGetToDo()
 }
 
-export const deletToDo = (id: number): Promise<AxiosResponse<toDoModel, any>> => {
+export const deleteToDo = (id: number): Promise<AxiosResponse<toDoModel, any>> => {
     return ApiService.requestDeleteToDo(id)
 }
 

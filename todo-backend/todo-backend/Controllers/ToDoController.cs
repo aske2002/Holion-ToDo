@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Net;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
@@ -50,6 +51,7 @@ namespace todo_backend.Controllers
         [HttpPut(Name = "EditToDo")]
         public async Task<ToDoModel> Put(EditToDoModel model)
         {
+
             ApplicationUser user = await GetCurrentUserAsync();
             ToDoItem item = dbContext.ToDoItems.FirstOrDefault(e => e.Id == model.Id);
             if (item == null)
@@ -66,9 +68,16 @@ namespace todo_backend.Controllers
             }
             if (item.IsComplete != model.IsComplete)
             {
-                item.IsComplete = model.IsComplete;
+                if(model.IsComplete == true)
+                {
+                    item.IsComplete = true;
+                }
+                else if(model.IsComplete == false)
+                {
+                    item.IsComplete = false;
+                }
             }
-            if (item.ItemName != model.ItemName)
+            if (item.ItemName != model.ItemName && model.ItemName != null)
             {
                 item.ItemName = model.ItemName;
             }

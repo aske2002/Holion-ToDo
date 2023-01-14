@@ -1,6 +1,7 @@
 export default interface toDoModel {
     Id: number,
-    ItemName: String,
+    ItemName: string,
     IsComplete: boolean,
-    CreateDate: Date
+    CreateDate?: Date,
+    isMock?: boolean,
 }
