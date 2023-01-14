@@ -59,7 +59,7 @@ const Home: React.FC = () => {
           item.ItemName = formvalue.ItemName
         }
         if (formvalue.IsComplete != undefined) {
-          item.IsComplete = !formvalue.IsComplete
+          item.IsComplete = formvalue.IsComplete
         }
       }
       return item

@@ -19,8 +19,8 @@ interface ToDoItemProps {
 
 const ToDoItem: React.FC<ToDoItemProps> = ({CreateDate, ItemName, IsComplete, Id, isMock, editFunction, deleteFunction}: ToDoItemProps) => {
     const [isEdit, setIsEdit] = useState<boolean>(false);
-    const [isComplete, setIsComplete] = useState<boolean>(IsComplete)
 
+    console.log(IsComplete)
     const initialValues: {
         ItemName: string,
     } = {
@@ -54,10 +54,10 @@ const ToDoItem: React.FC<ToDoItemProps> = ({CreateDate, ItemName, IsComplete, Id
                     <a href="javascript:void(0)" style={{color: "inherit"}} onClick={() => setIsEdit(!isEdit)}>
                         <EditRoundedIcon/>
                     </a>
-                    <a href="javascript:void(0)" style={{color: "inherit"}} onClick={(e) => {deleteFunction(Id)}}>
+                    <a href="javascript:void(0)" style={{color: "inherit"}} onClick={(e) => {deleteFunction(Id);}}>
                             <DeleteRoundedIcon className="mx-3" />
                     </a>
-                    <input style={{height: "30px", width: "30px"}} className="form-check-input" type="checkbox" id="flexCheckChecked" checked={isComplete} onChange={(e) => {e.target.checked ? (setIsComplete(true)) : setIsComplete(false); e.target.checked ? editFunction({Id: Id, IsComplete: true}) : editFunction({Id: Id, IsComplete: false})}}/>
+                    <input style={{height: "30px", width: "30px"}} className="form-check-input" type="checkbox" id="flexCheckChecked" checked={IsComplete} onChange={(e) => editFunction({Id: Id, IsComplete: e.target.checked})}/>
                 </div>
             )}
         </li>

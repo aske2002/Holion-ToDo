@@ -66,28 +66,21 @@ const Register: React.FC = () => {
                 <Form className="form-signin m-auto">
                     <img className="mb-4" src="https://holion.dk/img/logo.png" alt="" width="290" height="72"/>
                     <h1 className="h3 mb-3 font-weight-normal">Please register</h1>
-                    <label htmlFor="username" className="sr-only">Email address</label>
-                    <Field name="username" type="text" className="form-control" placeholder="Username"/>
-                    <ErrorMessage
-                        name="username"
-                        component="div"
-                        className="alert alert-danger"
-                    />
-                    <label htmlFor="email" className="sr-only">Email address</label>
-                    <Field name="email" type="text" className="form-control" placeholder="Email"/>
-                    <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="alert alert-danger"
-                    />
-                    <label htmlFor="password" className="sr-only">Password</label>
-                    <Field name="password" type="password" className="form-control mb-3" placeholder="Password"/>
-                    <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="alert alert-danger"
-                    />
-                    <button className="btn btn-lg btn-primary btn-block w-100" type="submit">
+                    <div className="form-floating">
+                        <Field name="username" id="floatingUsername" type="text" className="form-control" placeholder="Username"/>
+                        <label htmlFor="floatingUsername" className="sr-only">Email address</label>
+                    </div>
+
+                    <div className="form-floating">
+                        <Field name="email" id="floatingEmail" type="text" className="form-control" placeholder="Email"/>
+                        <label htmlFor="floatingEmail" className="sr-only">Email address</label>
+                    </div>
+                    <div className="form-floating">
+                        <Field name="password" id="floatingPassword" type="password" className="form-control mb-3" placeholder="Password"/>
+                        <label htmlFor="floatingPassword" className="sr-only">Password</label>
+                    </div>
+                    <a href="#" onClick={() => navigate('/login')}>Login instead?</a>
+                    <button className="btn btn-lg btn-primary btn-block w-100 my-3" type="submit">
                         {loading && (
                             <span className="spinner-border spinner-border-sm"></span>
                         )}
@@ -98,6 +91,21 @@ const Register: React.FC = () => {
                             {message}
                         </div>
                     )}
+                    <ErrorMessage
+                        name="username"
+                        component="div"
+                        className="alert alert-danger"
+                    />
+                    <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="alert alert-danger"
+                    />
+                    <ErrorMessage
+                        name="password"
+                        component="div"
+                        className="alert alert-danger"
+                    />
                 </Form>
             </Formik>
         </div>

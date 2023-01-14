@@ -57,12 +57,18 @@ const Login: React.FC = () => {
                         <Field name="password" id="floatingPassword" type="password" className="form-control mb-3" placeholder="Password"/>
                         <label htmlFor="floatingPassword" className="sr-only">Password</label>
                     </div>
-                    <button className="btn btn-lg btn-primary btn-block w-100 mb-3" type="submit">
+                    <a href="#" onClick={() => navigate('/register')}>Need an account?</a>
+                    <button className="btn btn-lg btn-primary btn-block w-100 my-3" type="submit">
                         {loading && (
                             <span className="spinner-border spinner-border-sm"></span>
                         )}
                         <span>Sign in</span>
                     </button>
+                    {message && (
+                        <div className="alert alert-danger" role="alert">
+                            {message}
+                        </div>
+                    )}
                     <ErrorMessage
                             name="password"
                             component="div"
@@ -73,11 +79,6 @@ const Login: React.FC = () => {
                         component="div"
                         className="alert alert-danger"
                     />
-                    {message && (
-                        <div className="alert alert-danger" role="alert">
-                            {message}
-                        </div>
-                    )}
                 </Form>
             </Formik>
         </div>
