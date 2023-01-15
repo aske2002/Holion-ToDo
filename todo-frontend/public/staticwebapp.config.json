@@ -1,0 +1,17 @@
+{
+    "routes": [
+       {
+       "route": "/home",
+       "rewrite": "/home"
+      },
+      {
+        "route": "/login",
+        "rewrite": "/login"
+       },
+       {
+        "route": "/register",
+        "rewrite": "/register"
+       }
+      
+      ]
+  }
