@@ -2,7 +2,7 @@
   "name": "todo-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://127.0.0.1:7119",
+  "proxy": "https://todo-backend-api.azurewebsites.net",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

@@ -10,7 +10,6 @@ const Login: React.FC = () => {
     let navigate: NavigateFunction = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
-    let http: string | undefined = process.env.HTTPS_PROXY
 
     const initialValues: {
         username: string;
@@ -43,7 +42,6 @@ const Login: React.FC = () => {
     };
     return (
         <div className="text-center w-100">
-            <h1>{http}</h1>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
