@@ -1,17 +1,6 @@
 {
-    "routes": [
-       {
-       "route": "/home",
-       "rewrite": "/home"
-      },
-      {
-        "route": "/login",
-        "rewrite": "/login"
-       },
-       {
-        "route": "/register",
-        "rewrite": "/register"
-       }
-      
-      ]
+  "navigationFallback": {
+      "rewrite": "index.html",
+      "exclude": ["*.{svg,png,jpg,gif}","*.{css,scss}","*.js"]
   }
+}
