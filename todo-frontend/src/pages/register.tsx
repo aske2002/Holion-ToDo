@@ -32,15 +32,8 @@ const Register: React.FC = () => {
         .email("This is not a valid email.")
         .required("This field is required!"),
       password: Yup.string()
-        .test(
-          "len",
-          "The password must be between 6 and 40 characters.",
-          (val: any) =>
-            val &&
-            val.toString().length >= 6 &&
-            val.toString().length <= 40
-        )
-        .required("This field is required!"),
+        .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, "Password must contain minimum 8 characters, one special character, one digit and one uppercase character.")
+        .required("Password field is required!"),
     });
   
     const handleRegister = (formValue: { username: string, email: string, password: string }) => {
@@ -51,8 +44,8 @@ const Register: React.FC = () => {
             setLoading(false)
             navigate("/login");
         }, (error) => {
-            setMessage(error.message);
             setLoading(false)
+            setMessage(error.message);
         });
     };
   
@@ -67,7 +60,7 @@ const Register: React.FC = () => {
                     <h1 className="h3 mb-3 font-weight-normal">Please register</h1>
                     <div className="form-floating">
                         <Field name="username" id="floatingUsername" type="text" className="form-control" placeholder="Username"/>
-                        <label htmlFor="floatingUsername" className="sr-only">Email address</label>
+                        <label htmlFor="floatingUsername" className="sr-only">Username</label>
                     </div>
 
                     <div className="form-floating">
