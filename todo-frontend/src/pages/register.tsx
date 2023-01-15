@@ -27,12 +27,12 @@ const Register: React.FC = () => {
             val.toString().length >= 3 &&
             val.toString().length <= 20
         )
-        .required("This field is required!"),
+        .required("Username field is required!"),
       email: Yup.string()
         .email("This is not a valid email.")
-        .required("This field is required!"),
+        .required("Email field is required!"),
       password: Yup.string()
-        .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/, "Password must contain minimum 8 characters, one special character, one digit and one uppercase character.")
+        .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/, "Password must contain minimum 6 characters, one special character, one digit and one uppercase character.")
         .required("Password field is required!"),
     });
   
