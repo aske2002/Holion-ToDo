@@ -39,7 +39,7 @@ export const login = (username: string, password: string): Promise<loginModel> =
   })
   .catch(function(error) {
     if (error.response) {
-      if(error.response.response.status === 401) {
+      if(error.response.status === 401) {
         throw Error("Invalid credentials")
       }
       throw Error(error.response.data.Message)
