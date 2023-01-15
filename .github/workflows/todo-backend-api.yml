@@ -64,7 +64,7 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.todo_backend_api_B83E }}
+        publish-profile: ${{ secrets.TODO_BACKEND_API_7F26 }}
     - name: Azure Login
       uses: azure/login@v1
       with:
