@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from 'react-router-dom';
+import {NavigateFunction, useNavigate} from 'react-router-dom';
 import * as AuthService from "../services/auth-service";
 import { Formik, Field, Form } from "formik";
 import * as ToDoService from "../services/todo-service"
@@ -11,14 +11,19 @@ import editToDoModel from "../models/editToDoModel";
 const Home: React.FC = () => {
   const [toDoList, setToDoList] = useState<toDoModel[]>([]);
   const [message, setMessage] = useState<string>();
-
+  let navigate: NavigateFunction = useNavigate();
+  
   useEffect(() => {
-    getToDos()
-  }, []);
-
-  if (!AuthService.getCurrentUser()) {
-    return <Navigate to="/login" replace/>
-  }
+    if(AuthService.getCurrentUser() === undefined) {
+      return navigate('/login')
+    }
+    ToDoService.getToDos()
+    .then((response) => {
+      setToDoList(response.data)
+    }, (error) => {
+      setMessage(error.message)
+    })
+  }, [navigate]);
 
   const initialValues: {
     addtodo: string;
