@@ -13,7 +13,7 @@ export const register = (username: string, email: string, password: string): Pro
   )
   .catch(function(error) {
         if (error.response) {
-            throw Error(error.response.data.message)
+            throw Error(error.message)
         } else if (error.request) {
             throw Error("Server did not respond")
         } else {
