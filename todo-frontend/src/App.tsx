@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -9,7 +8,6 @@ import NavBar from "./components/navbar";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home";
-import loginModel from "./models/loginModel";
 
 function App() {
 
