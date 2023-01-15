@@ -42,7 +42,7 @@ export const login = (username: string, password: string): Promise<loginModel> =
       if(error.response.response.status === 401) {
         throw Error("Invalid credentials")
       }
-      throw Error(error.data.Message)
+      throw Error(error.response.data.Message)
     } else if (error.request) {
       throw Error("Server did not respond")
     } else {
