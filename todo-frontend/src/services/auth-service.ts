@@ -1,12 +1,17 @@
 import axios from "axios";
+import crudEnum from "../models/crudEnum";
 import loginModel from '../models/loginModel'
+import request from './request-service'
 
 export const register = (username: string, email: string, password: string): Promise<any> => {
-  return axios.post("/Authenticate/register", {
-    username,
-    email,
-    password,
-  })
+  return request(
+    {
+      username,
+      email,
+      password,
+    }, crudEnum.POST,
+    "/Authenticate/register",
+  )
   .catch(function(error) {
         if (error.response) {
             throw Error(error.response.data.message)
@@ -19,11 +24,13 @@ export const register = (username: string, email: string, password: string): Pro
 };
 
 export const login = (username: string, password: string): Promise<loginModel> => {
-  return axios
-  .post<loginModel>("/Authenticate/login", {
-    username,
-    password,
-  })
+  return request<loginModel>({
+      username,
+      password,
+    },
+    crudEnum.POST,
+    "/Authenticate/login",
+  )
   .then((response) => {
     if (response.data.accessToken) {
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -49,7 +56,7 @@ export const logout = () => {
   localStorage.removeItem("user");
 };
 
-export function getCurrentUser  ():loginModel | undefined {
+export function getCurrentUser():loginModel | undefined {
   const userStr = localStorage.getItem("user");
   if (userStr) {
     let user: loginModel = JSON.parse(userStr);

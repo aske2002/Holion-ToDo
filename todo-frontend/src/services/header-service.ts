@@ -9,6 +9,6 @@ export default function authHeader() {
     if (user && user.accessToken) {
       return { 'Authorization': 'Bearer ' + user.accessToken, 'Content-Type': 'application/json'};
     } else {
-      throw Error("Not logged in")
+      return { 'Content-Type': 'application/json'};
     }
   }
