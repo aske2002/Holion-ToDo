@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
-import loginModel from "../models/loginModel";
+import { Navigate } from 'react-router-dom';
 import * as AuthService from "../services/auth-service";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as ToDoService from "../services/todo-service"
 import * as Yup from "yup";
 import toDoModel from "../models/toDoModel";
@@ -38,7 +37,7 @@ const Home: React.FC = () => {
   }
 
   const deleteToDo = (Id: number) => {
-    const filteredList = toDoList.filter(e => e.Id != Id)
+    const filteredList = toDoList.filter(e => e.Id !== Id)
     setToDoList(filteredList)
     ToDoService.deleteToDo(Id)
     .then(() => {
@@ -54,11 +53,11 @@ const Home: React.FC = () => {
 
   const editToDo = (formvalue: editToDoModel) => {
     const filteredList = toDoList.map(item => {
-      if(item.Id == formvalue.Id) {
-        if (formvalue.ItemName != undefined) {
+      if(item.Id === formvalue.Id) {
+        if (formvalue.ItemName !== undefined) {
           item.ItemName = formvalue.ItemName
         }
-        if (formvalue.IsComplete != undefined) {
+        if (formvalue.IsComplete !== undefined) {
           item.IsComplete = formvalue.IsComplete
         }
       }
@@ -106,6 +105,11 @@ const Home: React.FC = () => {
   });
   return (
     <div className="container">
+        {message && (
+            <div className="alert alert-danger" role="alert">
+                {message}
+            </div>
+        )}
         <h3>Goodmorning</h3>
         <Formik
                 initialValues={initialValues}

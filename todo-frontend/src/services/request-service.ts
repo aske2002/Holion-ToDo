@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { debug } from "console";
 import crudEnum from '../models/crudEnum'
 import authHeader from "./header-service";
 
@@ -9,24 +8,20 @@ export default function request<T>(body: any, requestType: crudEnum, url: string
         headers: authHeader(), 
     }
     switch(requestType) {
-        case "GET": {
+        case "GET": 
             return axios.get<T>(url, options);
-        };
-
-        case "POST": {
+        
+        case "POST": 
             return axios.post<T>(url, body, options);
-        };
 
-        case "PUT": {
+        case "PUT": 
             return axios.put<T>(url, body, options);
-        };
 
-        case "DELETE": {
+        case "DELETE": 
             return axios.delete<T>(url, options);
-        };
 
-        default: {
+        default: 
             throw Error()
-        };
+
     }
 } 

@@ -3,7 +3,6 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import IUser from "../models/loginModel";
 import { register } from "../services/auth-service";
 
 const Register: React.FC = () => {
@@ -79,7 +78,7 @@ const Register: React.FC = () => {
                         <Field name="password" id="floatingPassword" type="password" className="form-control mb-3" placeholder="Password"/>
                         <label htmlFor="floatingPassword" className="sr-only">Password</label>
                     </div>
-                    <a href="#" onClick={() => navigate('/login')}>Login instead?</a>
+                    <p style={{cursor: "pointer"}} onClick={() => navigate('/login')}>Login instead?</p>
                     <button className="btn btn-lg btn-primary btn-block w-100 my-3" type="submit">
                         {loading && (
                             <span className="spinner-border spinner-border-sm"></span>

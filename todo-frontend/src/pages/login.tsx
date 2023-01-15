@@ -57,7 +57,7 @@ const Login: React.FC = () => {
                         <Field name="password" id="floatingPassword" type="password" className="form-control mb-3" placeholder="Password"/>
                         <label htmlFor="floatingPassword" className="sr-only">Password</label>
                     </div>
-                    <a href="#" onClick={() => navigate('/register')}>Need an account?</a>
+                    <p style={{cursor: "pointer"}} onClick={() => navigate('/register')}>Need an account?</p>
                     <button className="btn btn-lg btn-primary btn-block w-100 my-3" type="submit">
                         {loading && (
                             <span className="spinner-border spinner-border-sm"></span>

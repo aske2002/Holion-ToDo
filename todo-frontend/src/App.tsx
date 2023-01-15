@@ -12,20 +12,9 @@ import Home from "./pages/home";
 import loginModel from "./models/loginModel";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState<loginModel | undefined>(undefined);
-
-  useEffect(() => {
-    const user: loginModel | undefined = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-    }
-
-  }, []);
 
   const logOut = () => {
     AuthService.logout();
-    setCurrentUser(undefined);  
   };
   return (
     <div>

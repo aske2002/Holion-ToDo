@@ -1,4 +1,3 @@
-import authHeader from "./header-service";
 import request from "./request-service";
 import toDoModel from "../models/toDoModel";
 import addToDoModel from "../models/addToDoModel";

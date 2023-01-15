@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import toDoModel from "../models/toDoModel";
+import React, { useState } from "react";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { editToDo } from "../services/todo-service";
 import editToDoModel from "../models/editToDoModel";
 
 interface ToDoItemProps {
@@ -32,7 +30,7 @@ const ToDoItem: React.FC<ToDoItemProps> = ({CreateDate, ItemName, IsComplete, Id
     });
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center px-3" style={{opacity: isMock==true ? "0.5" : "1"}}>
+        <li className="list-group-item d-flex justify-content-between align-items-center px-3" style={{opacity: isMock===true ? "0.5" : "1"}}>
             <div>
                 {isEdit ? (
                     <Formik
@@ -49,14 +47,14 @@ const ToDoItem: React.FC<ToDoItemProps> = ({CreateDate, ItemName, IsComplete, Id
                 )}
                 <small>{(CreateDate == null) ? "Loading" : new Date(CreateDate).toDateString()}</small>
             </div>
-            {(isMock == undefined) && (
+            {(isMock === undefined) && (
                 <div className="d-flex align-items-center">
-                    <a href="javascript:void(0)" style={{color: "inherit"}} onClick={() => setIsEdit(!isEdit)}>
+                    <div style={{cursor: "pointer"}} onClick={() => setIsEdit(!isEdit)}>
                         <EditRoundedIcon/>
-                    </a>
-                    <a href="javascript:void(0)" style={{color: "inherit"}} onClick={(e) => {deleteFunction(Id);}}>
+                    </div>
+                    <div style={{cursor: "pointer"}} onClick={(e) => {deleteFunction(Id);}}>
                             <DeleteRoundedIcon className="mx-3" />
-                    </a>
+                    </div>
                     <input style={{height: "30px", width: "30px"}} className="form-check-input" type="checkbox" id="flexCheckChecked" checked={IsComplete} onChange={(e) => editFunction({Id: Id, IsComplete: e.target.checked})}/>
                 </div>
             )}

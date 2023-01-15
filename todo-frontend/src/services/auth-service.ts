@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import loginModel from '../models/loginModel'
 
 export const register = (username: string, email: string, password: string): Promise<any> => {
@@ -33,7 +33,7 @@ export const login = (username: string, password: string): Promise<loginModel> =
   })
   .catch(function(error) {
     if (error.response) {
-      if(error.response.status == 401) {
+      if(error.response.status === 401) {
         throw Error("Invalid credentials")
       }
       throw Error(error.message)
