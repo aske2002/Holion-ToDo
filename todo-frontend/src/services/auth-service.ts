@@ -13,7 +13,7 @@ export const register = (username: string, email: string, password: string): Pro
   )
   .catch(function(error) {
         if (error.response) {
-            throw Error(error.message)
+            throw Error(error.response.data.Message)
         } else if (error.request) {
             throw Error("Server did not respond")
         } else {
@@ -39,10 +39,10 @@ export const login = (username: string, password: string): Promise<loginModel> =
   })
   .catch(function(error) {
     if (error.response) {
-      if(error.response.status === 401) {
+      if(error.response.response.status === 401) {
         throw Error("Invalid credentials")
       }
-      throw Error(error.message)
+      throw Error(error.data.Message)
     } else if (error.request) {
       throw Error("Server did not respond")
     } else {
